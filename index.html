@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Harlow+Solid+Italic&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Harlow Solid Italic', cursive;
+      margin: 0;
+      padding: 0;
+      background-color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .intro {
+      color: #3498db;
+      font-size: 60px;
+      opacity: 0;
+      animation: fadeIn 2s ease-out forwards;
+      animation-delay: 3s;
+    }
+
+    h1 {
+      font-size: 42px;
+      margin-bottom: 30px;
+      color: #333;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      animation: moveIn 3s ease-out infinite, changeColor 5s infinite;
+    }
+
+    h1::before {
+      content: "🏠";
+      display: block;
+      margin-bottom: 10px;
+      font-size: 24px;
+      animation: bounceUpDown 2s ease-in-out infinite;
+    }
+
+    h3 {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .grupo-botones {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(5, auto);
+      gap: 15px;
+    }
+
+    .boton {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 16px;
+      text-align: center;
+      text-decoration: none;
+      margin: 15px; /* Ajuste de la distancia entre botones */
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      position: relative;
+      font-family: 'Harlow Solid Italic', cursive;
+      background-image: linear-gradient(to bottom, #d2d2d2 50%, #b0b0b0 50%);
+      background-size: 100% 200%;
+      background-position: 0 100%;
+      transition: background-position 0.3s ease-in-out;
+      color: #555;
+    }
+
+    .boton:hover {
+      background-position: 0 0;
+      color: #222;
+    }
+
+    /* Estilos para los diferentes botones */
+    .boton-1, .boton-2 {
+      background-image: linear-gradient(to bottom, #bdc3c7 50%, #6e7f80 50%);
+      color: #fff;
+    }
+
+    .boton-3, .boton-4 {
+      background-image: linear-gradient(to bottom, #2ecc71 50%, #27ae60 50%);
+      color: #fff;
+    }
+
+    .boton-5, .boton-6 {
+      background-image: linear-gradient(to bottom, #e74c3c 50%, #c0392b 50%);
+      color: #fff;
+    }
+
+    .boton-7, .boton-8 {
+      background-image: linear-gradient(to bottom, #f39c12 50%, #d35400 50%);
+      color: #fff;
+    }
+
+    .boton-9, .boton-10 {
+      background-image: linear-gradient(to bottom, #9b59b6 50%, #8e44ad 50%);
+      color: #fff;
+    }
+
+    /* Agrega una pequeña animación al pasar el mouse sobre el botón */
+    .boton:hover {
+      background-color: #d2d2d2;
+      transform: scale(1.05);
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Estilo del mensaje emergente */
+    .boton:hover::after {
+      content: attr(title);
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #333;
+      color: #fff;
+      padding: 5px;
+      border-radius: 5px;
+      font-size: 14px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .boton:hover::after {
+      opacity: 1;
+    }
+
+    .boton-1:hover::after {
+      content: 'Esto es ' + attr(title) + ' \uD83D\uDEA1';
+    }
+
+    .boton-2:hover::after {
+      content: 'Esto es ' + attr(title) + ' \uD83D\uDCDA';
+    }
+
+    .boton-3:hover::after {
+      content: 'Esto es ' + attr(title) + ' ⚗️';
+    }
+
+    .boton-4:hover::after {
+      content: 'Esto es ' + attr(title) + ' 🔧';
+    }
+
+    .boton-5:hover::after {
+      content: 'Esto es ' + attr(title) + ' 🗺️';
+    }
+
+    .boton-6:hover::after {
+      content: 'Esto es ' + attr(title) + ' 🤖';
+    }
+
+    .boton-7:hover::after {
+      content: 'Esto es ' + attr(title) + ' 🎵';
+    }
+
+    .boton-8:hover::after {
+      content: 'Esto es ' + attr(title) + ' 🏃‍♂️';
+    }
+
+    .boton-9:hover::after {
+      content: 'Esto es ' + attr(title) + ' 💡';
+    }
+
+    .boton-10:hover::after {
+      content: 'Esto es ' + attr(title) + ' 🌐';
+    }
+
+    .boton:hover::after {
+      opacity: 1;
+    }
+
+    @keyframes moveIn {
+      0%, 100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(-50px);
+        opacity: 0.8;
+      }
+    }
+
+    @keyframes changeColor {
+      0% {
+        color: #555;
+      }
+      25% {
+        color: #d2d2d2;
+      }
+      50% {
+        color: #b0b0b0;
+      }
+      75% {
+        color: #6e7f80;
+      }
+      100% {
+        color: #3498db;
+      }
+    }
+
+    @keyframes bounceUpDown {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  </style>
+  <title>Home</title>
+</head>
+<body>
+
+  <audio controls autoplay>
+    <source src="tu_archivo_de_audio.mp3" type="audio/mp3">
+    Tu navegador no soporta el elemento de audio.
+  </audio>
+
+  <div class="intro">HOLA A LA HOME COMPAWNER</div>
+
+  <h1>HOME</h1>
+  <h3>Prueba tus Materias</h3>
+
+  <div class="grupo-botones">
+    <a href="file:///C:/Users/picas/Desktop/Matematicas/index.html" class="boton boton-1" title="🟰">Matemáticas</a>
+    <a href="#" class="boton boton-2" title="👅">Lengua</a>
+    <a href="#" class="boton boton-3" title="🧪">Física y Química</a>
+    <a href="#" class="boton boton-4" title="🧑🔧">Tecnología</a>
+    <a href="#" class="boton boton-5" title="🗺️">Geografía e Historia</a>
+    <a href="#" class="boton boton-6" title="🤖">Robótica</a>
+    <a href="#" class="boton boton-7" title="🎼">Música</a>
+    <a href="#" class="boton boton-8" title="🏃">Educación Física</a>
+    <a href="#" class="boton boton-9" title="💝">Valores</a>
+    <a href="#" class="boton boton-10" title="🎼">Inglés</a>
+     <a href="" class="boton boton-10" title=":SOLO DALE AL BOTON">Por si eres vago</a>
+  </div>
+
+  <script>
+    setTimeout(() => {
+      document.querySelector('.intro').style.animation = 'fadeOut 2s ease-in-out forwards';
+      setTimeout(() => {
+        document.querySelector('.intro').style.display = 'none';
+      }, 2000);
+    }, 7000);
+  </script>
+</body>
+</html>
